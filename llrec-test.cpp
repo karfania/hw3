@@ -237,7 +237,7 @@ int main(int argc, char* argv[])
     isNegative comp5;
 
     // Removing single digits
-    headllfilter = llfilter(headllfilter, DoValCompare(comp1));
+    headllfilter = llfilter(headllfilter, comp1);
     cout << "Updated list with removed single-digit nodes: ";
     print(headllfilter);
     dealloc(headllfilter);
@@ -245,28 +245,28 @@ int main(int argc, char* argv[])
 
     // Removing evens
     headllfilter = readList(argv[1]); //resetting headllfilter
-    headllfilter = llfilter(headllfilter, DoValCompare(comp2));
+    headllfilter = llfilter(headllfilter, comp2);
     cout << "Updated list with removed even nodes: ";
     print(headllfilter);
     dealloc(headllfilter);
 
     // Remvoing odds
     headllfilter = readList(argv[1]); //resetting headllfilter
-    headllfilter = llfilter(headllfilter, DoValCompare(comp3));
+    headllfilter = llfilter(headllfilter, comp3);
     cout << "Updated list with removed odd nodes: ";
     print(headllfilter);
     dealloc(headllfilter);
 
     // Removing positive nodes
     headllfilter = readList(argv[1]); //resetting headllfilter
-    headllfilter = llfilter(headllfilter, DoValCompare(comp4));
+    headllfilter = llfilter(headllfilter, comp4);
     cout << "Updated list with removed positive nodes: ";
     print(headllfilter);
     dealloc(headllfilter);
 
     // Removing negative nodes
     headllfilter = readList(argv[1]); //resetting headllfilter
-    headllfilter = llfilter(headllfilter, DoValCompare(comp5));
+    headllfilter = llfilter(headllfilter, comp5);
     cout << "Updated list with removed negative nodes: ";
     print(headllfilter);
     dealloc(headllfilter);

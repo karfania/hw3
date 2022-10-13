@@ -1,6 +1,7 @@
 #ifndef LLREC_H
 #define LLREC_H
 #include <cstdlib>
+#include <iostream>
 
 /**
  * Node struct for both problems
@@ -67,6 +68,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot);
  *   may change [i.e. be filtered])
  *
  */
+
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred);
 
@@ -75,13 +77,29 @@ Node* llfilter(Node* head, Comp pred);
 // implement the above function now.
 //*****************************************************************************
 
+// Function that calls the recursive helper
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
 {
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
+    if (head == NULL)
+    {
+        return head;
+    }
 
+    Node* rest = llfilter(head -> next, pred);
+
+    // If we need to remove head, delete it and return rest
+    // aka carrying over the list without head
+    if (pred(head -> val))
+    {
+        delete head;
+        return rest;
+    } 
+
+    // If we don't need to remove head, just return head 
+    // aka keeping head in the list
+    head -> next = rest;
+    return head;
 
 }
 
