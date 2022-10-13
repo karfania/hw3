@@ -6,4 +6,8 @@ llrec.o
 stack-test
 stack-test.o
 stack.h.gch
+heap_test.cpp
+heap_testing
+heap.h.gch
+/heap_test/heap_tests
 
