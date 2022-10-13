@@ -1,0 +1,9 @@
+/.vscode
+/stack_test.dSYM
+llrec-test
+llrec-test.o
+llrec.o
+stack-test
+stack-test.o
+stack.h.gch
+
