@@ -79,7 +79,7 @@ Heap<T, PComparator>::Heap(int m, PComparator c)
   n = m; // grabbing ary-ness of heap
   comparator = c; // grabbing comparator
   nHeap=std::vector<T>(); //proper instantiation of vector
-  nHeap.reserve(10); // needed to prevent failure on vector resize
+  //nHeap.reserve(10); // needed to prevent failure on vector resize
 }
 
 // Destructor
