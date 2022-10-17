@@ -78,8 +78,6 @@ Heap<T, PComparator>::Heap(int m, PComparator c)
 {
   n = m; // grabbing ary-ness of heap
   comparator = c; // grabbing comparator
-  nHeap=std::vector<T>(); //proper instantiation of vector
-  //nHeap.reserve(10); // needed to prevent failure on vector resize
 }
 
 // Destructor
@@ -138,19 +136,19 @@ void Heap<T, PComparator>::heapify(size_t index, PComparator c)
 
 
   // while not a leaf node (aka while a left-most leaf node for node at idx exists)
-  while (((aryNess * idx) - (aryNess - 2) + 1) < nHeap.size()) 
+  while (((aryNess * idx) + 1) < nHeap.size()) 
   {
     // The left-most child of a parent at loc index will always
     // be at the following index:
-    size_t bestChild = (aryNess * idx) - (aryNess - 2) + 1;
+    size_t bestChild = (aryNess * idx) + 1;
 
-    for (int i = 3; i <= (aryNess + 1); ++i)
+    for (int i = 2; i <= aryNess; ++i)
     {
       // checking if other children exist
       // if they do exist and it is less than minChild, then update it
 
       // if the child's index is within the bounds of the array, it exists
-      size_t currChild = (aryNess * idx) - (aryNess - i) + 1;
+      size_t currChild = (aryNess * idx) + i;
       if (currChild < nHeap.size())
       {
         // if this child is better than current best child, as dictated by
@@ -222,14 +220,24 @@ void Heap<T, PComparator>::push(const T& item)
   int aryNess = this -> n; // getting ary-ness
   PComparator c = this -> comparator; // getting the comparator
   T temp = item;
-  //std::cout << "Size of vec:" << nHeap.size() << std::endl;
   nHeap.push_back(temp); // adding the item to the back of the array
+
   size_t idx = nHeap.size() - 1; //push_back, so start at the end
-  size_t parent = (idx-1) / aryNess; // formula to find any parent
+  size_t parent;
+
+  // If the node is the only node in the vector, there's no real child
+  if (idx == 0)
+  {
+    parent = 0;
+  } else
+  {
+    parent = (idx-1) / aryNess; // formula to find any parent
+  }
 
   // while the index of parent is within the bounds of the container
   // and the parent is worse than their child, continue swapping and 
   // pushing it up
+
   while (parent > 0 && c(nHeap[idx], nHeap[parent]))
   {
     // Swapping values
@@ -242,9 +250,10 @@ void Heap<T, PComparator>::push(const T& item)
     idx = parent;
     parent = (idx - 1) / aryNess;
   }
+  
 
   // when we are at the root, make one final comparison
-  if (parent == 0)
+  if (parent == 0 && idx != 0)
   {
     // if the child is better than the parent, swap
     if (c(nHeap[idx], nHeap[parent]))
@@ -257,8 +266,7 @@ void Heap<T, PComparator>::push(const T& item)
     }
 
   }
-
-
+  
 }
 
 
