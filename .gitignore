@@ -11,4 +11,7 @@ heap_test.o
 heap_testing
 heap.h.gch
 /heap_test/heap_tests
+/logicsim/*.o
+/logicsim/logicsim
+
 
